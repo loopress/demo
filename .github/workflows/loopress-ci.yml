@@ -1,0 +1,27 @@
+name: Loopress CI
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: loopress/setup-ci@main
+        with:
+          token: ${{ secrets.LOOPRESS_TOKEN }}
+      - run: lps snippet push
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: loopress/setup-ci@main
+        with:
+          token: ${{ secrets.LOOPRESS_TOKEN }}
+      - run: lps snippet push
