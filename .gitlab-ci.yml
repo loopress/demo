@@ -1,0 +1,28 @@
+# `setup-ci` has no `v1` tag - only `main` - so `version` is pinned to `main` here.
+# The upstream template now accepts this as an input (loopress/setup-ci#gitlab/template.yml)
+# and installs the `jq`/`gettext` packages scripts/setup-wordpress.sh needs, so no local
+# override is required anymore.
+include:
+  - remote: 'https://raw.githubusercontent.com/loopress/setup-ci/main/gitlab/template.yml'
+    inputs:
+      version: 'main'
+
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  extends: .loopress-bootstrap
+  script:
+    - lps snippet push
+
+deploy:
+  stage: deploy
+  extends: .loopress-bootstrap
+  script:
+    - lps snippet push
+  needs:
+    - test
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
