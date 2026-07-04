@@ -1,8 +1,0 @@
-{
-  "id": 6,
-  "name": "Display a message after the 1st paragraph of posts",
-  "type": "text",
-  "active": true,
-  "location": "footer",
-  "description": "Imported from /Users/maximeblanc/Localdev/demo/snippets/6-display-a-message-after-the-1st-paragraph-of-posts.txt"
-}
