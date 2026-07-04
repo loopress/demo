@@ -1,6 +1,9 @@
 {
-  "projectId": "f87edb1f-eb98-4ca6-9bd5-93e14940e598",
+  "$schema": "https://www.loopress.dev/schema/project-config.json",
   "rootDir": ".",
   "snippetPlugin": "wpcode",
-  "snippetsDir": "snippets"
+  "snippetsDir": "snippets",
+  "plugins": {
+    "plugin-check": "2.0.0"
+  }
 }
