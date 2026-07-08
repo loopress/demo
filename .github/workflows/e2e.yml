@@ -19,6 +19,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
       # Boots WordPress (this shared action also installs the Loopress plugin/CLI, unused here).
       # The e2e suite only checks that wp-admin loads, so there's no state to reset between tests.
       - uses: loopress/setup-ci@main
