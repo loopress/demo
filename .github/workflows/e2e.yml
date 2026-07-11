@@ -1,0 +1,33 @@
+name: E2E
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version: "24"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      # Boots WordPress (this shared action also installs the Loopress plugin/CLI, unused here).
+      # The e2e suite only checks that wp-admin loads, so there's no state to reset between tests.
+      - uses: loopress/setup-ci@main
+        id: setup
+
+      - name: E2E tests
+        run: npx playwright test
+        env:
+          WP_BASE_URL: ${{ steps.setup.outputs.wp-url }}
