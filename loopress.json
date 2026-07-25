@@ -1,7 +1,5 @@
 {
   "$schema": "https://www.loopress.dev/schema/project-config.json",
-  "rootDir": ".",
-  "snippetPlugin": "wpcode",
   "snippetsDir": "snippets",
   "plugins": {
     "plugin-check": "2.0.0"
