@@ -13,7 +13,13 @@ jobs:
       - uses: loopress/setup-ci@main
         with:
           token: ${{ secrets.LOOPRESS_TOKEN }}
+      # plugin push first: installs/activates wpforms-lite, which form push below needs active.
+      - run: lps plugin push
       - run: lps snippet push
+      - run: lps api push
+      - run: lps acf push
+      - run: lps composer push
+      - run: lps form push
 
   deploy:
     needs: test
@@ -24,4 +30,9 @@ jobs:
       - uses: loopress/setup-ci@main
         with:
           token: ${{ secrets.LOOPRESS_TOKEN }}
+      - run: lps plugin push
       - run: lps snippet push
+      - run: lps api push
+      - run: lps acf push
+      - run: lps composer push
+      - run: lps form push

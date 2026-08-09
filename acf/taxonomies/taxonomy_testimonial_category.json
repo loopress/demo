@@ -1,0 +1,14 @@
+{
+  "key": "taxonomy_testimonial_category",
+  "title": "Testimonial Categories",
+  "taxonomy": "testimonial_category",
+  "object_type": ["testimonial"],
+  "labels": {
+    "name": "Testimonial Categories",
+    "singular_name": "Testimonial Category"
+  },
+  "public": true,
+  "hierarchical": true,
+  "show_in_rest": true,
+  "active": true
+}

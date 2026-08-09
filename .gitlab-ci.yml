@@ -15,13 +15,24 @@ test:
   stage: test
   extends: .loopress-bootstrap
   script:
+    # plugin push first: installs/activates wpforms-lite, which form push below needs active.
+    - lps plugin push
     - lps snippet push
+    - lps api push
+    - lps acf push
+    - lps composer push
+    - lps form push
 
 deploy:
   stage: deploy
   extends: .loopress-bootstrap
   script:
+    - lps plugin push
     - lps snippet push
+    - lps api push
+    - lps acf push
+    - lps composer push
+    - lps form push
   needs:
     - test
   rules:

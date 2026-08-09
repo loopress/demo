@@ -3,3 +3,4 @@ playwright-report/
 test-results/
 snippets/
 tests/e2e/.auth/
+vendor/

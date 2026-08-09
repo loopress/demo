@@ -1,0 +1,10 @@
+{
+  "id": 0,
+  "sources": [{ "comparison": "exact", "pattern": "/old-path" }],
+  "urlTo": "/new-path",
+  "headerCode": 301,
+  "status": "active",
+  "hits": 0,
+  "createdAt": null,
+  "updatedAt": null
+}

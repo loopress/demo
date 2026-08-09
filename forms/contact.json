@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "1": {
+      "id": "1",
+      "type": "text",
+      "label": "Name",
+      "required": "1",
+      "size": "medium"
+    },
+    "2": {
+      "id": "2",
+      "type": "email",
+      "label": "Email",
+      "required": "1",
+      "size": "medium"
+    },
+    "3": {
+      "id": "3",
+      "type": "textarea",
+      "label": "Message",
+      "required": "1",
+      "size": "medium"
+    }
+  },
+  "settings": {
+    "form_title": "Contact",
+    "form_desc": "",
+    "submit_text": "Submit",
+    "notification_enable": "1"
+  },
+  "meta": {
+    "template": "blank"
+  }
+}

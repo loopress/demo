@@ -2,6 +2,32 @@
 
 This project is a demo on how to use Loopress
 
+## Features demoed
+
+Every CI run (`test` and `deploy` jobs, GitHub and GitLab alike) boots a real, disposable
+WordPress instance via `loopress/setup-ci` and pushes this repo's content to it with the real
+`lps` CLI, in this order:
+
+| Command | Source in this repo | Notes |
+|---|---|---|
+| `lps plugin push` | `loopress.json` `plugins` | Installs/activates `wpforms-lite` so `form push` below has something to write to. `plugin-check` demonstrates a plain WordPress.org plugin under Loopress management. |
+| `lps snippet push` | `snippets/` | PHP/CSS/JS/HTML/text snippets, WPCode-backed on this instance. |
+| `lps api push` | `api/`, `lib/` | Custom REST routes: a plain `GET` with the default `manage_options` permission (`hello.php`), a public `permission()` override with CORS `headers()` for a headless caller (`newsletter-signup.php`), one (`prices-in-currency.php`) enriching the `price` ACF field from `acf/field-groups/group_demo_pricing.json` with a live rate from an external currency API through `guzzlehttp/guzzle`. `invoice-pdf/[order_id].php` shows a dynamic path segment rendering a real PDF with `dompdf/dompdf`, raw binary output instead of the usual JSON (headers set and echoed directly, since WordPress always JSON-encodes a normal route return value). `webhook.php` uses `#[Permission]` for per-verb authorization (a public health-check `get()`, a signed `post()`). `orders/[order_id]/items/[item_id].php` combines two dynamic segments with a `#[Permission]` callback shared from `lib/ApiKeyGuard.php`. `WITH_MAJ_ENDPOINT.php` is deliberately invalid (uppercase filename), meant to demonstrate the client-side filename check rejecting it before any network call. No page in this demo actually sets a price, so `prices-in-currency.php`'s response is a well-formed but empty list, the point is the external call and the Composer/API pairing, not seeded content. |
+| `lps acf push` | `acf/` | A field group, a post type, and a taxonomy. Options pages aren't included: they require ACF PRO, and this CI instance only has ACF free. |
+| `lps composer push` | `composer.json` | Installs `hello-dolly` from wpackagist (a WordPress plugin, visible under `wp-content/plugins/` afterward), `guzzlehttp/guzzle` (`use`d by `api/prices-in-currency.php`), and `dompdf/dompdf` (`use`d by `api/invoice-pdf/[order_id].php`). |
+| `lps form push` | `forms/` | A WPForms contact form. |
+
+`seo/` is included as a **reference example only**, not pushed by CI: `setup-ci` activates both
+RankMath and Yoast at once (on purpose, so the Loopress plugin's own test suite can exercise the
+conflict), and `lps seo` correctly refuses to guess which one is authoritative when more than one
+SEO plugin is active. A real site normally runs exactly one SEO plugin, and `lps seo push` there
+works the same way as every other command above.
+
+Not demoed here: `lps login` / `lps project push` / `lps project pull` / `lps snippet publish` -
+these link a project to a Loopress account through an interactive browser OAuth flow, which
+doesn't fit a headless CI run (see `e2e/README.md`'s "Why seeding, not real login" for the same
+reasoning applied to the CLI's own end-to-end suite).
+
 ## CI
 
 - Gitlab : [![pipeline status](https://gitlab.com/jean-smaug/loopress-demo/badges/master/pipeline.svg)](https://gitlab.com/jean-smaug/loopress-demo/-/commits/master)

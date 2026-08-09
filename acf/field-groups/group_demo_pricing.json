@@ -1,0 +1,24 @@
+{
+  "key": "group_demo_pricing",
+  "title": "Pricing",
+  "fields": [
+    {
+      "key": "field_demo_price",
+      "label": "Price",
+      "name": "price",
+      "type": "number",
+      "instructions": "",
+      "required": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "page"
+      }
+    ]
+  ],
+  "active": true
+}

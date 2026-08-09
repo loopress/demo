@@ -1,0 +1,31 @@
+{
+  "autoload": {
+    "psr-4": {
+      "LoopressLib\\": "lib/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  },
+  "extra": {
+    "installer-paths": {
+      "../plugins/{$name}/": ["type:wordpress-plugin"],
+      "../themes/{$name}/": ["type:wordpress-theme"]
+    }
+  },
+  "name": "loopress/site-dependencies",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    }
+  ],
+  "require": {
+    "composer/installers": "^2.0",
+    "guzzlehttp/guzzle": "^7.0",
+    "dompdf/dompdf": "^3.1",
+    "phpoffice/phpspreadsheet": "^5.0"
+  }
+}

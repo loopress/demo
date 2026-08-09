@@ -22,9 +22,9 @@ final class NewsletterSignup
         return ['subscribed' => $email];
     }
 
-    public function permission(): callable
+    public function permission(WP_REST_Request $request): bool
     {
-        return fn(): bool => true;
+        return true;
     }
 
     public function headers(): array

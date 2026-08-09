@@ -1,0 +1,12 @@
+{
+  "key": "post_type_testimonial",
+  "title": "Testimonials",
+  "post_type": "testimonial",
+  "labels": {
+    "name": "Testimonials",
+    "singular_name": "Testimonial"
+  },
+  "public": true,
+  "show_in_rest": true,
+  "active": true
+}
