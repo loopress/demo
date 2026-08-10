@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Loopress\Api\Attribute\Permission;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -14,12 +15,20 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 // which exports real WooCommerce orders through wc_get_orders() (HPOS-safe) rather than
 // get_posts(), the real thing this route stands in for.
 //
+// Raw binary output instead of the base64-in-JSON envelope the cookbook recipe uses, same
+// bypass as invoice-pdf/[order_id].php: WordPress always wp_json_encode()s a normal route
+// return value, so there's no way to hand back real .xlsx bytes through that path. Send the
+// real headers, write the file straight to the output stream, exit before WP's own dispatch
+// gets a chance to serialize anything.
+//
 // No page in this demo actually sets a price (see prices-in-currency.php), so the exported file
 // is a well-formed but empty spreadsheet beyond its header row, same caveat as that route.
+#[Permission(public: true)]
 final class OrdersExport
 {
-    public function get(): WP_REST_Response
+    public function get(): void
     {
+        /** @var WP_Post[] $pages */
         $pages = get_posts([
             'post_type' => 'page',
             'meta_key' => 'price',
@@ -41,23 +50,15 @@ final class OrdersExport
             $row++;
         }
 
-        $stream = fopen('php://temp', 'r+');
-        (new Xlsx($spreadsheet))->save($stream);
-        rewind($stream);
-        $bytes = stream_get_contents($stream);
-        fclose($stream);
+        $filename = 'orders-' . gmdate('Y-m-d') . '.xlsx';
 
-        $response = new WP_REST_Response([
-            'filename' => 'orders-' . gmdate('Y-m-d') . '.xlsx',
-            'content' => base64_encode($bytes),
-        ]);
-        $response->header('Cache-Control', 'private, max-age=0, no-store');
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header("Content-Disposition: attachment; filename=\"{$filename}\"");
+        header('Cache-Control: private, max-age=0, no-store');
 
-        return $response;
-    }
-
-    public function permission(WP_REST_Request $request): bool
-    {
-        return current_user_can('manage_options');
+        // Writes straight to the response body, no intermediate php://temp buffer needed now
+        // that the bytes don't have to be collected into a string for a base64/JSON envelope.
+        (new Xlsx($spreadsheet))->save('php://output');
+        exit;
     }
 }
