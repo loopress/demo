@@ -20,6 +20,30 @@ jobs:
       - run: lps acf push
       - run: lps composer push
       - run: lps form push
+      # Each cookbook-mapped recipe below is its own self-contained project (own
+      # loopress.json + composer.json), pushed from its own directory rather than
+      # sharing the site-wide config above. See obsidian/Product/Cookbook Content
+      # Pipeline.md for why.
+      - run: lps composer push && lps api push
+        working-directory: post-to-pdf-dompdf-wordpress-rest-api
+      - run: lps composer push
+        working-directory: spreadsheet-export-phpspreadsheet-wordpress-rest-api
+      # composer push only installs WooCommerce's files. `lps plugin push` normally
+      # activates plugins from loopress.json, but it refuses outright whenever a project
+      # has its own composer.json (composer.json is authoritative for plugins there), so
+      # there is no CLI command for this today. Activate it the same way a human would in
+      # wp-admin: the REST endpoint `lps plugin push` itself calls, authenticated with the
+      # Application Password setup-ci already issued for `lps` (see its config.json).
+      - name: Activate WooCommerce
+        working-directory: spreadsheet-export-phpspreadsheet-wordpress-rest-api
+        run: |
+          CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/loopress/config.json"
+          TOKEN=$(jq -r '.projects.ci.environments.local.token' "$CONFIG")
+          URL=$(jq -r '.projects.ci.environments.local.url' "$CONFIG")
+          curl -sf -u "$TOKEN" -X PUT "$URL/wp-json/wp/v2/plugins/woocommerce/woocommerce" \
+            -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
+      - run: lps api push
+        working-directory: spreadsheet-export-phpspreadsheet-wordpress-rest-api
 
   deploy:
     needs: test
@@ -36,3 +60,17 @@ jobs:
       - run: lps acf push
       - run: lps composer push
       - run: lps form push
+      - run: lps composer push && lps api push
+        working-directory: post-to-pdf-dompdf-wordpress-rest-api
+      - run: lps composer push
+        working-directory: spreadsheet-export-phpspreadsheet-wordpress-rest-api
+      - name: Activate WooCommerce
+        working-directory: spreadsheet-export-phpspreadsheet-wordpress-rest-api
+        run: |
+          CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/loopress/config.json"
+          TOKEN=$(jq -r '.projects.ci.environments.local.token' "$CONFIG")
+          URL=$(jq -r '.projects.ci.environments.local.url' "$CONFIG")
+          curl -sf -u "$TOKEN" -X PUT "$URL/wp-json/wp/v2/plugins/woocommerce/woocommerce" \
+            -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
+      - run: lps api push
+        working-directory: spreadsheet-export-phpspreadsheet-wordpress-rest-api

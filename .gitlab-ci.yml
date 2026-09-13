@@ -22,6 +22,25 @@ test:
     - lps acf push
     - lps composer push
     - lps form push
+    # Each cookbook-mapped recipe is its own self-contained project (own loopress.json +
+    # composer.json), pushed from its own directory. See obsidian/Product/Cookbook
+    # Content Pipeline.md.
+    - cd post-to-pdf-dompdf-wordpress-rest-api && lps composer push && lps api push && cd ..
+    # composer push only installs WooCommerce's files. `lps plugin push` refuses outright
+    # whenever a project has its own composer.json (composer.json is authoritative for
+    # plugins there), so there is no CLI command for this today. Activate it the same way
+    # a human would in wp-admin: the REST endpoint `lps plugin push` itself calls,
+    # authenticated with the Application Password setup-ci already issued for `lps`.
+    - |
+      cd spreadsheet-export-phpspreadsheet-wordpress-rest-api
+      lps composer push
+      CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/loopress/config.json"
+      TOKEN=$(jq -r '.projects.ci.environments.local.token' "$CONFIG")
+      URL=$(jq -r '.projects.ci.environments.local.url' "$CONFIG")
+      curl -sf -u "$TOKEN" -X PUT "$URL/wp-json/wp/v2/plugins/woocommerce/woocommerce" \
+        -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
+      lps api push
+      cd ..
 
 deploy:
   stage: deploy
@@ -33,6 +52,17 @@ deploy:
     - lps acf push
     - lps composer push
     - lps form push
+    - cd post-to-pdf-dompdf-wordpress-rest-api && lps composer push && lps api push && cd ..
+    - |
+      cd spreadsheet-export-phpspreadsheet-wordpress-rest-api
+      lps composer push
+      CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/loopress/config.json"
+      TOKEN=$(jq -r '.projects.ci.environments.local.token' "$CONFIG")
+      URL=$(jq -r '.projects.ci.environments.local.url' "$CONFIG")
+      curl -sf -u "$TOKEN" -X PUT "$URL/wp-json/wp/v2/plugins/woocommerce/woocommerce" \
+        -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
+      lps api push
+      cd ..
   needs:
     - test
   rules:
