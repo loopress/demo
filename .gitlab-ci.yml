@@ -51,6 +51,7 @@ test:
         -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
       lps hook push
       cd ..
+    - cd image-resizing-intervention-image-wordpress-rest-api && lps composer push && lps api push && cd ..
 
 deploy:
   stage: deploy
@@ -83,6 +84,7 @@ deploy:
         -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
       lps hook push
       cd ..
+    - cd image-resizing-intervention-image-wordpress-rest-api && lps composer push && lps api push && cd ..
   needs:
     - test
   rules:

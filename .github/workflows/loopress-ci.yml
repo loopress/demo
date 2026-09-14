@@ -56,6 +56,8 @@ jobs:
             -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
       - run: lps hook push
         working-directory: instant-search-algolia-woocommerce-hooks
+      - run: lps composer push && lps api push
+        working-directory: image-resizing-intervention-image-wordpress-rest-api
 
   deploy:
     needs: test
@@ -98,3 +100,5 @@ jobs:
             -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
       - run: lps hook push
         working-directory: instant-search-algolia-woocommerce-hooks
+      - run: lps composer push && lps api push
+        working-directory: image-resizing-intervention-image-wordpress-rest-api
