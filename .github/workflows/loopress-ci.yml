@@ -44,6 +44,18 @@ jobs:
             -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
       - run: lps api push
         working-directory: spreadsheet-export-phpspreadsheet-wordpress-rest-api
+      - run: lps composer push
+        working-directory: instant-search-algolia-woocommerce-hooks
+      - name: Activate WooCommerce
+        working-directory: instant-search-algolia-woocommerce-hooks
+        run: |
+          CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/loopress/config.json"
+          TOKEN=$(jq -r '.projects.ci.environments.local.token' "$CONFIG")
+          URL=$(jq -r '.projects.ci.environments.local.url' "$CONFIG")
+          curl -sf -u "$TOKEN" -X PUT "$URL/wp-json/wp/v2/plugins/woocommerce/woocommerce" \
+            -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
+      - run: lps hook push
+        working-directory: instant-search-algolia-woocommerce-hooks
 
   deploy:
     needs: test
@@ -74,3 +86,15 @@ jobs:
             -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
       - run: lps api push
         working-directory: spreadsheet-export-phpspreadsheet-wordpress-rest-api
+      - run: lps composer push
+        working-directory: instant-search-algolia-woocommerce-hooks
+      - name: Activate WooCommerce
+        working-directory: instant-search-algolia-woocommerce-hooks
+        run: |
+          CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/loopress/config.json"
+          TOKEN=$(jq -r '.projects.ci.environments.local.token' "$CONFIG")
+          URL=$(jq -r '.projects.ci.environments.local.url' "$CONFIG")
+          curl -sf -u "$TOKEN" -X PUT "$URL/wp-json/wp/v2/plugins/woocommerce/woocommerce" \
+            -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
+      - run: lps hook push
+        working-directory: instant-search-algolia-woocommerce-hooks
