@@ -58,6 +58,8 @@ jobs:
         working-directory: instant-search-algolia-woocommerce-hooks
       - run: lps composer push && lps api push
         working-directory: image-resizing-intervention-image-wordpress-rest-api
+      - run: lps composer push && lps acf push && lps hook push && lps api push
+        working-directory: graphql-wordpress-rest-api-route
 
   deploy:
     needs: test
@@ -102,3 +104,5 @@ jobs:
         working-directory: instant-search-algolia-woocommerce-hooks
       - run: lps composer push && lps api push
         working-directory: image-resizing-intervention-image-wordpress-rest-api
+      - run: lps composer push && lps acf push && lps hook push && lps api push
+        working-directory: graphql-wordpress-rest-api-route

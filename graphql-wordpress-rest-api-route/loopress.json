@@ -1,0 +1,4 @@
+{
+  "$schema": "https://www.loopress.dev/schema/project-config.json",
+  "apiDir": "api"
+}
