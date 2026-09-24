@@ -52,6 +52,7 @@ test:
       lps hook push
       cd ..
     - cd image-resizing-intervention-image-wordpress-rest-api && lps composer push && lps api push && cd ..
+    - cd graphql-wordpress-rest-api-route && lps composer push && lps acf push && lps hook push && lps api push && cd ..
 
 deploy:
   stage: deploy
@@ -85,6 +86,7 @@ deploy:
       lps hook push
       cd ..
     - cd image-resizing-intervention-image-wordpress-rest-api && lps composer push && lps api push && cd ..
+    - cd graphql-wordpress-rest-api-route && lps composer push && lps acf push && lps hook push && lps api push && cd ..
   needs:
     - test
   rules:

@@ -1,0 +1,34 @@
+{
+  "key": "group_post_fields",
+  "title": "Post Fields",
+  "fields": [
+    {
+      "key": "field_post_reading_time",
+      "label": "Reading Time",
+      "name": "reading_time",
+      "type": "number",
+      "instructions": "Minutes",
+      "required": 0,
+      "show_in_rest": 1
+    },
+    {
+      "key": "field_post_summary",
+      "label": "Summary",
+      "name": "summary",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "show_in_rest": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "post"
+      }
+    ]
+  ],
+  "active": true
+}
