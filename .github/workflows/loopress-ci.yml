@@ -60,6 +60,11 @@ jobs:
         working-directory: image-resizing-intervention-image-wordpress-rest-api
       - run: lps composer push && lps acf push && lps hook push && lps api push
         working-directory: graphql-wordpress-rest-api-route
+      # apps/ticket is a React bundle: Loopress ships dist/, it never runs the build.
+      - run: |
+          lps composer push && lps hook push && lps api push
+          npm --prefix apps/ticket ci && npm --prefix apps/ticket run build && lps app push -y
+        working-directory: qr-code-generation-wordpress-rest-api
 
   deploy:
     needs: test
@@ -106,3 +111,8 @@ jobs:
         working-directory: image-resizing-intervention-image-wordpress-rest-api
       - run: lps composer push && lps acf push && lps hook push && lps api push
         working-directory: graphql-wordpress-rest-api-route
+      # apps/ticket is a React bundle: Loopress ships dist/, it never runs the build.
+      - run: |
+          lps composer push && lps hook push && lps api push
+          npm --prefix apps/ticket ci && npm --prefix apps/ticket run build && lps app push -y
+        working-directory: qr-code-generation-wordpress-rest-api
