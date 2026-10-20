@@ -1,0 +1,11 @@
+{
+  "autoload": "on",
+  "name": "bakery_info",
+  "readonly": false,
+  "value": {
+    "closed_day": "Monday",
+    "weekday_hours": "7am to 7pm",
+    "sunday_hours": "7am to 1pm",
+    "phone": "01 23 45 67 89"
+  }
+}

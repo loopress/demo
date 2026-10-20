@@ -1,0 +1,6 @@
+{
+  "autoload": "on",
+  "name": "blogname",
+  "readonly": false,
+  "value": "Tanneurs Bakery"
+}

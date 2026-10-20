@@ -1,0 +1,128 @@
+{
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "color": "#FBF6EE",
+          "name": "Cream",
+          "slug": "base"
+        },
+        {
+          "color": "#2B1D14",
+          "name": "Dark crust",
+          "slug": "contrast"
+        },
+        {
+          "color": "#B5642A",
+          "name": "Crust",
+          "slug": "accent-1"
+        },
+        {
+          "color": "#E9D8BF",
+          "name": "Wheat",
+          "slug": "accent-2"
+        },
+        {
+          "color": "#6B4A2F",
+          "name": "Rye",
+          "slug": "accent-3"
+        },
+        {
+          "color": "#F4EADB",
+          "name": "Flour",
+          "slug": "accent-4"
+        },
+        {
+          "color": "#7A6655",
+          "name": "Ash",
+          "slug": "accent-5"
+        },
+        {
+          "color": "#2B1D1426",
+          "name": "Crust 15%",
+          "slug": "accent-6"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "name": "Vollkorn",
+          "slug": "vollkorn",
+          "fontFamily": "Vollkorn, serif",
+          "fontFace": [
+            {
+              "fontFamily": "Vollkorn",
+              "fontStyle": "normal",
+              "fontWeight": "400 900",
+              "src": [
+                "file:./assets/fonts/vollkorn/Vollkorn-VariableFont_wght.woff2"
+              ]
+            },
+            {
+              "fontFamily": "Vollkorn",
+              "fontStyle": "italic",
+              "fontWeight": "400 900",
+              "src": [
+                "file:./assets/fonts/vollkorn/Vollkorn-Italic-VariableFont_wght.woff2"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Manrope",
+          "slug": "manrope",
+          "fontFamily": "Manrope, sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Manrope",
+              "fontStyle": "normal",
+              "fontWeight": "200 800",
+              "src": [
+                "file:./assets/fonts/manrope/Manrope-VariableFont_wght.woff2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var:preset|color|base",
+      "text": "var:preset|color|contrast"
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|manrope",
+      "lineHeight": "1.6"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|vollkorn",
+          "fontWeight": "600",
+          "letterSpacing": "-0.01em"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "var:preset|color|accent-1"
+        }
+      },
+      "button": {
+        "color": {
+          "background": "var:preset|color|accent-1",
+          "text": "var:preset|color|base"
+        }
+      }
+    },
+    "blocks": {
+      "core/site-title": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|vollkorn",
+          "fontWeight": "700"
+        }
+      }
+    }
+  }
+}

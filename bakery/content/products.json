@@ -1,0 +1,98 @@
+{
+  "categories": [
+    {
+      "slug": "breads",
+      "name": "Breads"
+    },
+    {
+      "slug": "viennoiserie",
+      "name": "Viennoiserie"
+    },
+    {
+      "slug": "sweet-things",
+      "name": "Sweet things"
+    }
+  ],
+  "products": [
+    {
+      "slug": "baguette",
+      "title": "Baguette tradition",
+      "category": "breads",
+      "price": 1.4,
+      "weight": "250 g",
+      "excerpt": "Flour, water, salt and levain. Crisp crust, creamy crumb, slow fermented overnight.",
+      "image": "images/baguette.jpg",
+      "alt": "Baguettes tradition"
+    },
+    {
+      "slug": "croissant",
+      "title": "Butter croissant",
+      "category": "viennoiserie",
+      "price": 1.6,
+      "weight": "",
+      "excerpt": "Laminated by hand every morning with AOP butter, golden and flaky.",
+      "image": "images/croissant.jpg",
+      "alt": "A butter croissant"
+    },
+    {
+      "slug": "fruit-tarts",
+      "title": "Seasonal fruit tart",
+      "category": "sweet-things",
+      "price": 4.5,
+      "weight": "",
+      "excerpt": "Vanilla custard on shortcrust, topped with the fruit of the week.",
+      "image": "images/fruit-tarts.jpg",
+      "alt": "Fruit and custard tarts"
+    },
+    {
+      "slug": "country-sourdough",
+      "title": "Country sourdough",
+      "category": "breads",
+      "price": 6.5,
+      "weight": "800 g",
+      "excerpt": "Our house loaf. Wheat and a little rye, 36 hours of fermentation, baked on stone.",
+      "image": "images/country-sourdough.jpg",
+      "alt": "A country sourdough loaf cooling on a rack"
+    },
+    {
+      "slug": "seeded-sourdough",
+      "title": "Seeded sourdough",
+      "category": "breads",
+      "price": 7.0,
+      "weight": "800 g",
+      "excerpt": "Sesame, poppy and sunflower seeds in the dough and on the crust.",
+      "image": "images/seeded-sourdough.jpg",
+      "alt": "A seeded sourdough loaf"
+    },
+    {
+      "slug": "pain-au-chocolat",
+      "title": "Pain au chocolat",
+      "category": "viennoiserie",
+      "price": 1.8,
+      "weight": "",
+      "excerpt": "Two bars of dark chocolate, the same dough as our croissants.",
+      "image": "images/pain-au-chocolat.jpg",
+      "alt": "A pain au chocolat"
+    },
+    {
+      "slug": "twice-baked-croissant",
+      "title": "Twice-baked croissant",
+      "category": "viennoiserie",
+      "price": 3.2,
+      "weight": "",
+      "excerpt": "Yesterday's croissant, filled with almond cream and baked again until dark and crisp.",
+      "image": "images/twice-baked-croissant.jpg",
+      "alt": "A twice-baked croissant next to a coffee"
+    },
+    {
+      "slug": "babka",
+      "title": "Chocolate babka",
+      "category": "sweet-things",
+      "price": 9.0,
+      "weight": "500 g",
+      "excerpt": "Brioche dough twisted with dark chocolate and hazelnut. Weekend breakfast, sorted.",
+      "image": "images/babka.jpg",
+      "alt": "A braided chocolate babka"
+    }
+  ]
+}

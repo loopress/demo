@@ -1,0 +1,5 @@
+/* Tanneurs Bakery. Colors and fonts come from Global Styles (theme/*-global-styles.json),
+   used here through the CSS variables WordPress generates for them. */
+@import "./layout.css";
+@import "./components.css";
+@import "./photos.css";

@@ -1,0 +1,15 @@
+{
+  "object_type": [
+    "product"
+  ],
+  "labels": {
+    "name": "Product categories",
+    "singular_name": "Product category"
+  },
+  "hierarchical": true,
+  "show_in_rest": true,
+  "show_admin_column": true,
+  "rewrite": {
+    "slug": "product-category"
+  }
+}

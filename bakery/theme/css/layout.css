@@ -1,0 +1,136 @@
+:root {
+  --c-width: 1180px;
+  --c-gutter: clamp(20px, 4vw, 40px);
+  --c-radius: 18px;
+  --c-shadow: 0 18px 40px -24px rgba(43, 29, 20, 0.45);
+}
+
+body {
+  margin: 0;
+}
+
+.c-main {
+  margin: 0;
+  padding-bottom: 96px;
+}
+
+.c-section,
+.c-page-head {
+  box-sizing: border-box;
+  max-width: var(--c-width);
+  margin-inline: auto;
+  padding-inline: var(--c-gutter);
+}
+
+.c-section {
+  margin-top: 88px;
+}
+
+/* Header */
+.c-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  box-sizing: border-box;
+  max-width: var(--c-width);
+  margin: 0 auto;
+  padding: 26px var(--c-gutter);
+}
+
+/* The header group's flow layout puts a block gap above the nav: cancel it. */
+.c-header > * {
+  margin-block: 0;
+}
+
+.c-header .wp-block-site-title {
+  margin: 0;
+  font-size: 28px;
+}
+
+.c-header .wp-block-site-title a {
+  color: var(--wp--preset--color--contrast);
+  text-decoration: none;
+}
+
+.c-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.c-header__nav a {
+  color: var(--wp--preset--color--contrast);
+  text-decoration: none;
+}
+
+.c-header__nav a:hover {
+  color: var(--wp--preset--color--accent-1);
+}
+
+.c-header__nav .c-header__cta {
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--wp--preset--color--contrast);
+  color: var(--wp--preset--color--base);
+}
+
+.c-header__nav .c-header__cta:hover {
+  background: var(--wp--preset--color--accent-1);
+  color: var(--wp--preset--color--base);
+}
+
+/* Footer */
+.c-footer {
+  background: var(--wp--preset--color--contrast);
+  color: var(--wp--preset--color--accent-2);
+  padding: 64px var(--c-gutter) 32px;
+}
+
+.c-footer__inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  max-width: var(--c-width);
+  margin: 0 auto;
+}
+
+.c-footer p {
+  margin: 0 0 8px;
+}
+
+.c-footer__brand {
+  font-family: var(--wp--preset--font-family--vollkorn);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--wp--preset--color--base);
+}
+
+.c-footer__title {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--wp--preset--color--accent-1);
+}
+
+.c-footer__small {
+  max-width: var(--c-width);
+  margin: 48px auto 0 !important;
+  padding-top: 24px;
+  border-top: 1px solid rgba(233, 216, 191, 0.2);
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+@media (max-width: 760px) {
+  .c-header {
+    flex-direction: column;
+  }
+
+  .c-footer__inner {
+    grid-template-columns: 1fr;
+  }
+}
