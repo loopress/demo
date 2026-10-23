@@ -1,0 +1,16 @@
+/* Hero and about photos, files in theme/img/: the push copies them into the child theme,
+   so they travel with the code to every environment. Product photos are featured images,
+   content seeded per site (content/). */
+.c-photo {
+  background-color: var(--wp--preset--color--accent-2);
+  background-position: center;
+  background-size: cover;
+}
+
+.c-photo--country-sourdough {
+  background-image: url("../img/country-sourdough.jpg");
+}
+
+.c-photo--seeded-sourdough {
+  background-image: url("../img/seeded-sourdough.jpg");
+}

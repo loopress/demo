@@ -1,0 +1,6 @@
+{
+  "$schema": "https://www.loopress.dev/schema/project-config.json",
+  "plugins": {
+    "advanced-custom-fields": "6.8.10"
+  }
+}

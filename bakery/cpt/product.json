@@ -1,0 +1,23 @@
+{
+  "labels": {
+    "name": "Products",
+    "singular_name": "Product",
+    "add_new_item": "Add new product",
+    "edit_item": "Edit product",
+    "all_items": "All products"
+  },
+  "public": true,
+  "has_archive": false,
+  "show_in_rest": true,
+  "menu_icon": "dashicons-carrot",
+  "menu_position": 20,
+  "supports": [
+    "title",
+    "excerpt",
+    "thumbnail",
+    "page-attributes"
+  ],
+  "rewrite": {
+    "slug": "products"
+  }
+}

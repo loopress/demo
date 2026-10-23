@@ -1,0 +1,6 @@
+{
+  "autoload": "on",
+  "name": "blogdescription",
+  "readonly": false,
+  "value": "Sourdough, viennoiserie and tarts, baked every morning on Rue des Tanneurs"
+}
