@@ -1,0 +1,13 @@
+{
+  "labels": {
+    "name": "Tickets",
+    "singular_name": "Ticket",
+    "add_new_item": "Add Ticket",
+    "search_items": "Search Tickets"
+  },
+  "public": false,
+  "show_ui": true,
+  "show_in_rest": true,
+  "menu_icon": "dashicons-tickets-alt",
+  "supports": ["title"]
+}

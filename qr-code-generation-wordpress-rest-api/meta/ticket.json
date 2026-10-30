@@ -1,0 +1,7 @@
+{
+  "_customer_id": {
+    "type": "integer",
+    "single": true,
+    "description": "The buyer's user id: api/ticket-qr/[ticket_id].php only answers them, or an admin."
+  }
+}
