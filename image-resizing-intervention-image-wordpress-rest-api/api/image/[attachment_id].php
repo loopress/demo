@@ -18,8 +18,10 @@ class Image
             return new WP_Error('not_found', 'No attachment with that id.', ['status' => 404]);
         }
 
-        $width  = (int) ($request->get_param('width') ?: 400);
-        $height = (int) ($request->get_param('height') ?: 400);
+        // Clamped: this route is public, and an unbounded 20000x20000 request is a memory
+        // spike anyone can trigger.
+        $width  = min(2000, max(1, (int) ($request->get_param('width') ?: 400)));
+        $height = min(2000, max(1, (int) ($request->get_param('height') ?: 400)));
 
         $manager = new ImageManager(new Driver());
         $image   = $manager->read($path);
