@@ -1,0 +1,4 @@
+{
+  "title": "Partner Feed Article",
+  "content": "<p onclick=\"alert(1)\">Hello <script>bad()</script>world</p>"
+}
