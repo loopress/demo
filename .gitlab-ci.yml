@@ -51,9 +51,9 @@ test:
         -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
       lps hook push
       cd ..
-    - cd image-resizing-intervention-image-wordpress-rest-api && lps composer push && lps api push && cd ..
+    - cd image-resizing-intervention-image-wordpress-rest-api && lps composer push && lps api push && npm --prefix apps/image-shapes ci && npm --prefix apps/image-shapes run build && lps app push -y && cd ..
     - cd graphql-wordpress-rest-api-route && lps composer push && lps acf push && lps hook push && lps api push && cd ..
-    - cd qr-code-generation-wordpress-rest-api && lps composer push && lps hook push && lps api push && npm --prefix apps/ticket ci && npm --prefix apps/ticket run build && lps app push -y && cd ..
+    - cd qr-code-generation-wordpress-rest-api && lps composer push && lps cpt push && lps meta push && lps api push && npm --prefix apps/ticket ci && npm --prefix apps/ticket run build && lps app push -y && cd ..
 
 deploy:
   stage: deploy
@@ -86,9 +86,9 @@ deploy:
         -H 'Content-Type: application/json' -d '{"status":"active"}' > /dev/null
       lps hook push
       cd ..
-    - cd image-resizing-intervention-image-wordpress-rest-api && lps composer push && lps api push && cd ..
+    - cd image-resizing-intervention-image-wordpress-rest-api && lps composer push && lps api push && npm --prefix apps/image-shapes ci && npm --prefix apps/image-shapes run build && lps app push -y && cd ..
     - cd graphql-wordpress-rest-api-route && lps composer push && lps acf push && lps hook push && lps api push && cd ..
-    - cd qr-code-generation-wordpress-rest-api && lps composer push && lps hook push && lps api push && npm --prefix apps/ticket ci && npm --prefix apps/ticket run build && lps app push -y && cd ..
+    - cd qr-code-generation-wordpress-rest-api && lps composer push && lps cpt push && lps meta push && lps api push && npm --prefix apps/ticket ci && npm --prefix apps/ticket run build && lps app push -y && cd ..
   needs:
     - test
   rules:
