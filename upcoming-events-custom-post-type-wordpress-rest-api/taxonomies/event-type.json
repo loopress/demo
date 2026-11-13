@@ -1,0 +1,11 @@
+{
+  "object_type": ["event"],
+  "labels": {
+    "name": "Event Types",
+    "singular_name": "Event Type"
+  },
+  "hierarchical": true,
+  "show_in_rest": true,
+  "show_admin_column": true,
+  "rewrite": { "slug": "event-type" }
+}
