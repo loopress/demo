@@ -1,0 +1,26 @@
+{
+  "settings": {
+    "color": {
+      "palette": [
+        {"slug": "brand", "name": "Brand", "color": "#1d3557"},
+        {"slug": "accent", "name": "Accent", "color": "#e63946"},
+        {"slug": "paper", "name": "Paper", "color": "#f8f5f0"},
+        {"slug": "ink", "name": "Ink", "color": "#14213d"}
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {"slug": "headline", "name": "Headline", "fontFamily": "Georgia, 'Times New Roman', serif"},
+        {"slug": "body", "name": "Body", "fontFamily": "system-ui, -apple-system, 'Segoe UI', sans-serif"}
+      ]
+    }
+  },
+  "styles": {
+    "color": {"background": "var(--wp--preset--color--paper)", "text": "var(--wp--preset--color--ink)"},
+    "typography": {"fontFamily": "var(--wp--preset--font-family--body)"},
+    "elements": {
+      "heading": {"typography": {"fontFamily": "var(--wp--preset--font-family--headline)"}},
+      "link": {"color": {"text": "var(--wp--preset--color--accent)"}}
+    }
+  }
+}
