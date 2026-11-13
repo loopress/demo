@@ -1,0 +1,20 @@
+{
+  "start_date": {
+    "type": "string",
+    "single": true,
+    "show_in_rest": true,
+    "description": "When the event starts, \"Y-m-d H:i:s\" in the site's timezone."
+  },
+  "end_date": {
+    "type": "string",
+    "single": true,
+    "show_in_rest": true,
+    "description": "When the event ends, \"Y-m-d H:i:s\" in the site's timezone: api/events/upcoming.php lists it until then."
+  },
+  "venue": {
+    "type": "string",
+    "single": true,
+    "show_in_rest": true,
+    "description": "Where the event takes place, free text."
+  }
+}
