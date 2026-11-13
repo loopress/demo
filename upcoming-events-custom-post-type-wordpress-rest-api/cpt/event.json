@@ -1,0 +1,14 @@
+{
+  "labels": {
+    "name": "Events",
+    "singular_name": "Event",
+    "add_new_item": "Add Event",
+    "search_items": "Search Events"
+  },
+  "public": true,
+  "has_archive": true,
+  "show_in_rest": true,
+  "menu_icon": "dashicons-calendar-alt",
+  "supports": ["title", "editor", "excerpt", "thumbnail", "custom-fields"],
+  "rewrite": { "slug": "events" }
+}
