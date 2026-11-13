@@ -1,0 +1,42 @@
+{
+  "items": [
+    {
+      "children": [],
+      "classes": [],
+      "description": "",
+      "object": "page",
+      "objectSlug": "about",
+      "target": "",
+      "title": "",
+      "type": "post_type",
+      "url": null,
+      "xfn": ""
+    },
+    {
+      "children": [],
+      "classes": [],
+      "description": "",
+      "object": "page",
+      "objectSlug": "services",
+      "target": "",
+      "title": "",
+      "type": "post_type",
+      "url": null,
+      "xfn": ""
+    },
+    {
+      "children": [],
+      "classes": [],
+      "description": "",
+      "object": "page",
+      "objectSlug": "contact",
+      "target": "",
+      "title": "",
+      "type": "post_type",
+      "url": null,
+      "xfn": ""
+    }
+  ],
+  "name": "Main Menu",
+  "slug": "main"
+}
