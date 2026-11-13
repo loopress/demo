@@ -16,10 +16,16 @@ class UpcomingEvents
             return new WP_Error('invalid_per_page', 'per_page must be a whole number.', ['status' => 400]);
         }
 
+        $page = $request->get_param('page') ?? '1';
+        if (!is_string($page) || !ctype_digit($page) || (int) $page < 1) {
+            return new WP_Error('invalid_page', 'page must be a whole number, 1 or more.', ['status' => 400]);
+        }
+
         $query = [
             'post_type'      => 'event',
             'post_status'    => 'publish',
             'posts_per_page' => max(1, min(self::MAX_PER_PAGE, (int) $perPage)),
+            'paged'          => (int) $page,
             'no_found_rows'  => true,
             'meta_query'     => [
                 // Still on: an event already started but not finished stays in the list.
@@ -72,10 +78,11 @@ class UpcomingEvents
         ];
     }
 
-    // "2026-12-05 19:30:00" in the site's timezone to "2026-12-05T19:30:00+01:00".
+    // "2026-12-05 19:30:00" in the site's timezone to "2026-12-05T19:30:00+01:00". An empty or
+    // malformed value gives null, never a made-up date.
     private function isoDate(mixed $value): ?string
     {
-        $date = is_string($value) ? date_create_immutable($value, wp_timezone()) : false;
+        $date = is_string($value) ? DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $value, wp_timezone()) : false;
 
         return $date === false ? null : $date->format(DATE_ATOM);
     }

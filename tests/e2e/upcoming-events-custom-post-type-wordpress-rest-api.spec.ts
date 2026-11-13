@@ -65,8 +65,13 @@ test.describe('upcoming events route', () => {
     expect(events.map((event) => event.title)).toEqual(['ongoing'])
   })
 
-  test('refuses an invalid per_page or an unknown type', async ({request}) => {
-    for (const [query, code] of [['&per_page=abc', 'invalid_per_page'], ['&per_page=-1', 'invalid_per_page'], ['&type=no-such-type', 'invalid_type']]) {
+  test('pages through the list', async ({request}) => {
+    const events = (await (await request.get(route(`&type=${slug}&per_page=2&page=2`))).json()) as Event[]
+    expect(events.map((event) => event.title)).toEqual(['later'])
+  })
+
+  test('refuses an invalid per_page or page, or an unknown type', async ({request}) => {
+    for (const [query, code] of [['&per_page=abc', 'invalid_per_page'], ['&per_page=-1', 'invalid_per_page'], ['&page=0', 'invalid_page'], ['&type=no-such-type', 'invalid_type']]) {
       const response = await request.get(route(query), {failOnStatusCode: false})
       expect(response.status(), query).toBe(400)
       expect(await response.json()).toMatchObject({code})
