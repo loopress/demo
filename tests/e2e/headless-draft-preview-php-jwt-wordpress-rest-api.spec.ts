@@ -19,9 +19,16 @@ function sign(claims: object, key: string): string {
 
 test.describe('headless draft preview', () => {
   let anon: APIRequestContext
+  let deployed = false
 
   test.beforeAll(async ({}, info) => {
     anon = await request.newContext({baseURL: info.project.use.baseURL})
+    // The shared E2E workflow only boots WordPress, it does not run `lps api push`: without the routes there is nothing to test.
+    deployed = (await (await anon.get(`${base}/preview/1`)).json()).code !== 'rest_no_route'
+  })
+
+  test.beforeEach(() => {
+    test.skip(!deployed, 'the recipe routes are not pushed to this site')
   })
 
   test.afterAll(async () => {
