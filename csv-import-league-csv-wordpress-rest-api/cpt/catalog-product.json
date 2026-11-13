@@ -1,0 +1,13 @@
+{
+  "labels": {
+    "name": "Catalog products",
+    "singular_name": "Catalog product",
+    "add_new_item": "Add Catalog product",
+    "search_items": "Search Catalog products"
+  },
+  "public": false,
+  "show_ui": true,
+  "show_in_rest": true,
+  "menu_icon": "dashicons-products",
+  "supports": ["title"]
+}
