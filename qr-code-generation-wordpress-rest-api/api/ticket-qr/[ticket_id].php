@@ -30,12 +30,9 @@ class TicketQr
 
         $result = $builder->build();
 
-        $response = new WP_REST_Response([
+        return new WP_REST_Response([
             'data_uri' => 'data:image/png;base64,' . base64_encode($result->getString()),
         ]);
-        $response->header('Cache-Control', 'private, max-age=3600');
-
-        return $response;
     }
 
     // An entry credential: the ticket's own buyer or a site admin, nobody else.
