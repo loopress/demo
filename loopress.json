@@ -1,9 +1,0 @@
-{
-  "$schema": "https://www.loopress.dev/schema/project-config.json",
-  "apiDir": "api",
-  "snippetsDir": "snippets",
-  "plugins": {
-    "plugin-check": "latest",
-    "wpforms-lite": "latest"
-  }
-}
