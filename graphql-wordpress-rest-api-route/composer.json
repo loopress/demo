@@ -1,5 +1,6 @@
 {
   "require": {
-    "webonyx/graphql-php": "^15.0"
+    "webonyx/graphql-php": "^15.0",
+    "wpackagist-plugin/advanced-custom-fields": "*"
   }
 }

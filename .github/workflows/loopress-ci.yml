@@ -53,7 +53,7 @@ jobs:
           lps composer push && lps api push
           npm --prefix apps/image-shapes ci && npm --prefix apps/image-shapes run build && lps app push -y
         working-directory: image-resizing-intervention-image-wordpress-rest-api
-      - run: lps composer push && lps acf push && lps hook push && lps api push
+      - run: lps plugin push --activate && lps acf push && lps hook push && lps api push
         working-directory: graphql-wordpress-rest-api-route
       # apps/ticket is a React bundle: Loopress ships dist/, it never runs the build.
       - run: |
@@ -70,12 +70,6 @@ jobs:
       - uses: loopress/setup-ci@main
         with:
           token: ${{ secrets.LOOPRESS_TOKEN }}
-      - run: lps plugin push
-      - run: lps snippet push
-      - run: lps api push
-      - run: lps acf push
-      - run: lps composer push
-      - run: lps form push
       - run: lps composer push && lps api push
         working-directory: post-to-pdf-dompdf-wordpress-rest-api
       - run: lps composer push
@@ -107,7 +101,7 @@ jobs:
           lps composer push && lps api push
           npm --prefix apps/image-shapes ci && npm --prefix apps/image-shapes run build && lps app push -y
         working-directory: image-resizing-intervention-image-wordpress-rest-api
-      - run: lps composer push && lps acf push && lps hook push && lps api push
+      - run: lps plugin push --activate && lps acf push && lps hook push && lps api push
         working-directory: graphql-wordpress-rest-api-route
       # apps/ticket is a React bundle: Loopress ships dist/, it never runs the build.
       - run: |
