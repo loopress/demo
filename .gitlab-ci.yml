@@ -15,13 +15,6 @@ test:
   stage: test
   extends: .loopress-bootstrap
   script:
-    # plugin push first: installs/activates wpforms-lite, which form push below needs active.
-    - lps plugin push
-    - lps snippet push
-    - lps api push
-    - lps acf push
-    - lps composer push
-    - lps form push
     # Each cookbook-mapped recipe is its own self-contained project (own loopress.json +
     # composer.json), pushed from its own directory. See obsidian/Product/Cookbook
     # Content Pipeline.md.
@@ -52,19 +45,13 @@ test:
       lps hook push
       cd ..
     - cd image-resizing-intervention-image-wordpress-rest-api && lps composer push && lps api push && npm --prefix apps/image-shapes ci && npm --prefix apps/image-shapes run build && lps app push -y && cd ..
-    - cd graphql-wordpress-rest-api-route && lps composer push && lps acf push && lps hook push && lps api push && cd ..
+    - cd graphql-wordpress-rest-api-route && lps plugin push --activate && lps acf push && lps hook push && lps api push && cd ..
     - cd qr-code-generation-wordpress-rest-api && lps composer push && lps cpt push && lps meta push && lps api push && npm --prefix apps/ticket ci && npm --prefix apps/ticket run build && lps app push -y && cd ..
 
 deploy:
   stage: deploy
   extends: .loopress-bootstrap
   script:
-    - lps plugin push
-    - lps snippet push
-    - lps api push
-    - lps acf push
-    - lps composer push
-    - lps form push
     - cd post-to-pdf-dompdf-wordpress-rest-api && lps composer push && lps api push && cd ..
     - |
       cd spreadsheet-export-phpspreadsheet-wordpress-rest-api
@@ -87,7 +74,7 @@ deploy:
       lps hook push
       cd ..
     - cd image-resizing-intervention-image-wordpress-rest-api && lps composer push && lps api push && npm --prefix apps/image-shapes ci && npm --prefix apps/image-shapes run build && lps app push -y && cd ..
-    - cd graphql-wordpress-rest-api-route && lps composer push && lps acf push && lps hook push && lps api push && cd ..
+    - cd graphql-wordpress-rest-api-route && lps plugin push --activate && lps acf push && lps hook push && lps api push && cd ..
     - cd qr-code-generation-wordpress-rest-api && lps composer push && lps cpt push && lps meta push && lps api push && npm --prefix apps/ticket ci && npm --prefix apps/ticket run build && lps app push -y && cd ..
   needs:
     - test
