@@ -12,7 +12,7 @@ use Dompdf\Dompdf;
 //
 // Mirrors the cookbook recipe at
 // https://docs.loopress.dev/cookbook/documents-and-files/post-to-pdf-dompdf-wordpress-rest-api/
-// line for line: any published post, no separate content to seed for this one, "Hello world!"
+// line for line: any publicly viewable post, no separate content to seed for this one, "Hello world!"
 // (post 1, WordPress's own default) renders through it as-is.
 //
 // Raw binary output instead of JSON, same bypass as invoice-pdf/[order_id].php used to be:
@@ -26,7 +26,9 @@ final class PostPdf_PostId
         $postId = (int) $request->get_param('post_id');
         $post = get_post($postId);
 
-        if ($post === null || $post->post_status !== 'publish') {
+        // Same answer for every post a visitor could not read on the site itself: missing,
+        // draft, private, password-protected, or a post type with no public page.
+        if ($postId < 1 || $post === null || ! is_post_publicly_viewable($post) || post_password_required($post)) {
             wp_die(esc_html('No published post with that id.'), '', ['response' => 404]);
         }
 
